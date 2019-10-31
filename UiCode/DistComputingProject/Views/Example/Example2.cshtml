@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Example 2";
+
+    List<string> tags_ai = new List<string> { "space_shuttle", "vestment", "throne", "toilet_seat", "ski" };
+    List<double> confidence_ai = new List<double> { 0.276, 0.115, 0.072, 0.052, 0.037 };
+
+    List<string> tags_az = new List<string> { "person", "human face", "clothing", "flag", "smile" };
+    List<double> confidence_az = new List<double> { 0.996, 0.984, 0.973, 0.717, 0.582 };
+}
+
+<div class="text-center">
+    <h1 class="display-5">Example 2</h1>
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img style="width: 540px;" src="~/img/02.jpeg"/>
+            </div>
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td><b>#</b></td>
+                            <td><b>Azure Vision Tag</b></td>
+                            <td><b>Confidence</b></td>
+                            <td><b>ImageAI Tag</b></td>
+                            <td><b>Confidence</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 0;}
+                        @foreach (var item in tags_az)
+                        {
+                            i++;
+                            <tr>
+                                <td>@i</td>
+                                <td>@item</td>
+                                <td>@confidence_az[i-1]</td>
+                                <td>
+                                    @if(i <= tags_ai.Count)
+                                    {
+                                        @tags_ai[i-1]
+                                    }
+                                </td>
+                                <td>
+                                    @if(i <= confidence_ai.Count)
+                                    {
+                                        @confidence_ai[i-1]
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br \>
+    <h4>Similarity: 57.17%</h4>
+    <img style="width: 700px; height: 500px" src="~/img/map_02.jpg"/>
+</div>

@@ -1,0 +1,44 @@
+﻿@model Tuple<int[], int[]>
+@{
+    ViewData["Title"] = "Confidence Graphs";
+
+    var azData = Model.Item1; 
+    var aiData = Model.Item2;
+}
+
+<div class="text-center">
+    <h1 class="display-5">Azure Vision and ImageAI Confidence</h1>
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <input id="az0" type="hidden" data="@azData[0]"/>
+                <input id="az60" type="hidden" data="@azData[1]"/>
+                <input id="az70" type="hidden" data="@azData[2]"/>
+                <input id="az80" type="hidden" data="@azData[3]"/>
+                <input id="az90" type="hidden" data="@azData[4]"/>
+
+                <h3 class="text-center">Azure Vision</h3>
+                <canvas id="azChart" width="100" height="100"></canvas>
+            </div>
+            <div class="col">
+                <input id="ai0" type="hidden" data="@aiData[0]"/>
+                <input id="ai60" type="hidden" data="@aiData[1]"/>
+                <input id="ai70" type="hidden" data="@aiData[2]"/>
+                <input id="ai80" type="hidden" data="@aiData[3]"/>
+                <input id="ai90" type="hidden" data="@aiData[4]"/>
+
+                <h3 class="text-center">ImageAI</h3>
+                <canvas id="aiChart" width="100" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script type="text/javascript" src="~/js/mycharts.js"></script>
+}

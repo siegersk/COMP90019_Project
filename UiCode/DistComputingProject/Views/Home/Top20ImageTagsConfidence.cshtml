@@ -1,0 +1,64 @@
+﻿@model Tuple<IEnumerable<TagResultConfidence>, IEnumerable<TagResultConfidence>>
+@{
+    ViewData["Title"] = "Top 20 Azure Vision and ImageAI Tags";
+}
+
+<div class="text-center">
+    <h1 class="display-5">Top 20 Azure Vision and ImageAI Tags</h1>
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table tablle-bordered">
+                    <thead>
+                        <tr>
+                            <td><b>#</b></td>
+                            <td><b>Azure Vision Tag</b></td>
+                            <td><b>Sum of Confidence</b></td>
+                            <td><b>Total</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 0;}
+                        @foreach (var item in Model.Item1)
+                        {
+                            i++;
+                            <tr>
+                                <td>@i</td>
+                                <td><a asp-area="" asp-controller="Home" asp-action="AzTagDetails" asp-route-id="@item.Tag">@item.Tag</a></td>
+                                <td>@item.SumConfidence.ToString("F2")</td>
+                                <td>@item.Total</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <table class="table tablle-bordered">
+                    <thead>
+                        <tr>
+                            <td><b>#</b></td>
+                            <td><b>ImageAI Tag</b></td>
+                            <td><b>Sum of Confidence</b></td>
+                            <td><b>Total</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int j = 0;}
+                        @foreach (var item in Model.Item2)
+                        {
+                            j++;
+                            <tr>
+                                <td>@j</td>
+                                <td><a asp-area="" asp-controller="Home" asp-action="AiTagDetails" asp-route-id="@item.Tag">@item.Tag</a></td>
+                                <td>@item.SumConfidence.ToString("F2")</td>
+                                <td>@item.Total</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

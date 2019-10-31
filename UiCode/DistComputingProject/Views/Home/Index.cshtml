@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<ul>
+    <li>
+        Two engines (Part of collection)
+        <ul>
+            <li><a asp-area="" asp-controller="Home" asp-action="Top20ImageTags">Top 20 Azure Vision and ImageAI Tags (Tag counts)</a></li></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Top20ImageTagsConfidence">Top 20 Azure Vision and ImageAI Tags (Sum of the prediction confidence)</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="ConfidenceCharts">Confidence Charts</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="ImageAzTagCloud">Azure Vision Tag Cloud</a></li>
+        </ul>
+    <li>
+        ImageAI (Whole collection)
+        <ul>
+            <li><a asp-area="" asp-controller="Home" asp-action="Top20ImageAiAndHashTags">Top 20 Hashtags and ImageAI Tags</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="ImageAiTagCloud">ImageAI Tag Cloud</a></li>
+        </ul>
+    </li>
+</ul>
+
+
+<br />
+

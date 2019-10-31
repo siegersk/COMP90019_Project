@@ -1,0 +1,84 @@
+﻿
+@model Tuple<IEnumerable<TagResult>, IEnumerable<MediaModel>>
+@{
+    ViewData["Title"] = "Tag details";
+
+    var oppositeModel = ViewBag.ModelType == ModelType.ImageAI ? "Azure Vision Tag" : "ImageAI Tag"; 
+}
+
+<div class="text-center">
+    <h1 class="display-5">Tag details</h1>
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Tag: @ViewBag.Tag</h1>          
+            </div>
+            <div class="col">
+                <h4>Top 10 tags occured with given tag</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td><b>#</b></td>
+                            <td><b>@oppositeModel</b></td>
+                            <td><b>Total</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 0;}
+                        @foreach (var item in Model.Item1)
+                        {
+                            i++;
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.Tag</td>
+                                <td>@item.Total</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h2>List of Images</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <td><b>Link</b></td>
+                <td style="width: 200px"><b>Metadata</b></td>
+                <td><b>Tags</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item2)
+            {
+                <tr>
+                    <td><a href="@item.MediaObj.ImageLink">Image</a></td>
+                    <td>
+                        <text>Format: @item.MediaObj.MetaData?.Format</text><br />
+                        <text>Size: @item.MediaObj.MetaData?.Width x @item.MediaObj.MetaData?.Height</text>
+                    </td>
+                    <td>
+                        <text>
+                            <b>ImageAI tags</b>: 
+                            @foreach (var tag in item.MediaObj.TagsAI)
+                            {
+                                <text>@tag.Name : @tag.Confidence.ToString("F2"), </text>
+                            }
+                        </text><br />
+                        <text>
+                            <b>Azure Vision tags</b>:
+                            @foreach (var tag in item.MediaObj.TagsAZ)
+                            {
+                                <text>@tag.Name : @tag.Confidence.ToString("F2"), </text>
+                            }
+                        </text>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

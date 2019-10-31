@@ -1,0 +1,18 @@
+﻿@model List<TagResult>
+@{
+    ViewData["Title"] = "Azure Vision Tag Cloud";
+}
+<h1>@ViewData["Title"] <span class="badge badge-secondary">@Model.Count</span></h1>
+
+
+<div id="tags">
+    @foreach (var item in Model)
+    {
+        <a asp-area="" asp-controller="Home" asp-action="AzTagDetails" asp-route-id="@item.Tag" rel="@item.Total">@item.Tag</a>
+    }
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="~/lib/tagcloud/jquery.tagcloud.js"></script>
+    <script type="text/javascript" src="~/js/mytagcloud.js"></script>
+}
